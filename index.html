@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;background:#1a0a3e;display:flex;justify-content:center;align-items:flex-start;overflow:hidden}
-#frame{position:relative;width:320px;height:640px;overflow:hidden;flex-shrink:0;touch-action:none}
+#frame{position:relative;width:640px;height:960px;overflow:hidden;flex-shrink:0;touch-action:none}
 #gc{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
 #ui{position:absolute;top:0;left:0;width:100%;padding:14px 22px;display:flex;justify-content:space-between;pointer-events:none;z-index:10}
 .ub{background:rgba(30,15,70,0.85);padding:7px 18px;font-family:'Courier New',monospace;font-size:18px;font-weight:700;color:#f0e8ff;border:3px solid #7060c0;letter-spacing:2px}
@@ -22,7 +22,7 @@ html,body{height:100%;background:#1a0a3e;display:flex;justify-content:center;ali
 </head>
 <body>
 <div id="frame">
-  <canvas id="gc" width="320" height="640"></canvas>
+  <canvas id="gc" width="640" height="960"></canvas>
   <div id="ui">
     <div class="ub">★ <span id="sc">0</span></div>
     <div class="ub">BEST <span id="hi">0</span></div>
@@ -39,7 +39,7 @@ html,body{height:100%;background:#1a0a3e;display:flex;justify-content:center;ali
 const canvas=document.getElementById('gc');
 const ctx=canvas.getContext('2d');
 ctx.imageSmoothingEnabled=false;
-const W=320,H=640,P=3;
+const W=640,H=960,P=3;
 
 /* ══════════════ 303 AUDIO ══════════════ */
 let audioCtx=null;
