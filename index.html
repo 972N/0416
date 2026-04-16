@@ -10,13 +10,13 @@ html,body{height:100%;background:#1a0a3e;display:flex;justify-content:center;ali
 #frame{position:relative;width:640px;height:960px;overflow:hidden;flex-shrink:0;touch-action:none}
 #gc{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
 #ui{position:absolute;top:0;left:0;width:100%;padding:14px 22px;display:flex;justify-content:space-between;pointer-events:none;z-index:10}
-.ub{background:rgba(30,15,70,0.85);padding:7px 18px;font-family:'Courier New',monospace;font-size:18px;font-weight:700;color:#f0e8ff;border:3px solid #7060c0;letter-spacing:2px}
+.ub{background:rgba(30,15,70,0.85);padding:7px 18px;font-family:'LanaPixel','Courier New',monospace;font-size:18px;font-weight:700;color:#f0e8ff;border:3px solid #7060c0;letter-spacing:2px}
 #overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;background:rgba(20,10,55,0.88)}
 #overlay.hidden{display:none}
-#startBtn{background:#5535a8;border:4px solid #9070e0;color:#f0e8ff;font-family:'Courier New',monospace;font-size:24px;font-weight:700;padding:20px 70px;cursor:pointer;letter-spacing:4px;text-shadow:3px 3px 0 #2a1060}
+#startBtn{background:#5535a8;border:4px solid #9070e0;color:#f0e8ff;font-family:'LanaPixel','Courier New',monospace;font-size:24px;font-weight:700;padding:20px 70px;cursor:pointer;letter-spacing:4px;text-shadow:3px 3px 0 #2a1060}
 #startBtn:active{transform:translate(3px,3px)}
 #ctrls{position:absolute;bottom:20px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 30px;z-index:10}
-.cbtn{width:130px;height:130px;background:rgba(30,15,70,0.72);border:4px solid #7060c0;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;font-size:44px;color:#d0c0ff;font-weight:900;font-family:'Courier New',monospace;touch-action:none}
+.cbtn{width:130px;height:130px;background:rgba(30,15,70,0.72);border:4px solid #7060c0;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;font-size:44px;color:#d0c0ff;font-weight:900;font-family:'LanaPixel','Courier New',monospace;touch-action:none}
 .cbtn:active{transform:translate(3px,3px);background:rgba(80,50,160,0.72)}
 </style>
 </head>
@@ -143,7 +143,7 @@ function drawPxBtn(cx,cy,label,col){
   ctx.fillRect(x+U*3,y+BH-U*3,BW-U*6,U*2);
 
   ctx.fillStyle='#ffffff';
-  ctx.font='bold 20px "Courier New"';
+  ctx.font='bold 20px "LanaPixel"';
   ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText(label,cx,cy+3);
 }
@@ -559,7 +559,7 @@ function drawParticles(){
 function drawFlash(){
   if(!flashTxt||flashTimer<=0)return;
   ctx.save();ctx.globalAlpha=Math.min(1,flashTimer/50);
-  ctx.font='bold 22px "Courier New"';ctx.textAlign='center';
+  ctx.font='bold 22px "LanaPixel"';ctx.textAlign='center';
   ctx.fillStyle=flashTxt.color;ctx.fillText(flashTxt.text,W/2,H*0.34);
   ctx.restore();flashTimer--;
 }
@@ -572,9 +572,9 @@ function drawBlack(){
   ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
   const blink=Math.floor(Date.now()/400)%2;
   ctx.fillStyle=blink?'#ffffff':'#999999';
-  ctx.font='bold 36px "Courier New"';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font='bold 36px "LanaPixel"';ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText('TOO HIGH',W/2,H/2-20);
-  ctx.font='bold 20px "Courier New"';
+  ctx.font='bold 20px "LanaPixel"';
   ctx.fillText('* * * * * * * *',W/2,H/2+30);
 }
 
@@ -617,7 +617,7 @@ function drawWantMore(){
   /* flashing title */
   const blink=Math.floor(Date.now()/420)%2;
   ctx.fillStyle=blink?'#ffd700':'#ffaa00';
-  ctx.font='bold 44px "Courier New"';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font='bold 44px "LanaPixel"';ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText('WANT MORE PILLS?',W/2,H/2-160);
 
   /* pixel dashes */
@@ -668,7 +668,7 @@ function drawSkullScreen(){
   /* flashing text */
   const blink=Math.floor(Date.now()/350)%2;
   ctx.fillStyle=blink?'#ffffff':'#ffe0c0';
-  ctx.font='bold 30px "Courier New"';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font='bold 30px "LanaPixel"';ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText('YOU PLAY TOO DAMN MUCH',W/2,H/2+120);
 
   /* pixel sparkles corner */
