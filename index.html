@@ -5,18 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>👻 Ghost Pills</title>
 <style>
+@font-face{
+  font-family:'LanaPixel';
+  src:url('https://raw.githubusercontent.com/ericoporto/pixel-utf8-fonts/main/lanapixel/LanaPixel.ttf') format('truetype');
+  font-display:swap;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;background:#1a0a3e;display:flex;justify-content:center;align-items:flex-start;overflow:hidden}
+html,body{height:100%;background:#1a0a3e;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;font-family:'LanaPixel',monospace}
 #frame{position:relative;width:640px;height:960px;overflow:hidden;flex-shrink:0;touch-action:none}
 #gc{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
 #ui{position:absolute;top:0;left:0;width:100%;padding:14px 22px;display:flex;justify-content:space-between;pointer-events:none;z-index:10}
-.ub{background:rgba(30,15,70,0.85);padding:7px 18px;font-family:'LanaPixel','Courier New',monospace;font-size:18px;font-weight:700;color:#f0e8ff;border:3px solid #7060c0;letter-spacing:2px}
+.ub{background:rgba(30,15,70,0.85);padding:7px 18px;font-family:'LanaPixel',monospace;font-size:18px;font-weight:700;color:#f0e8ff;border:3px solid #7060c0;letter-spacing:2px}
 #overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;background:rgba(20,10,55,0.88)}
 #overlay.hidden{display:none}
-#startBtn{background:#5535a8;border:4px solid #9070e0;color:#f0e8ff;font-family:'LanaPixel','Courier New',monospace;font-size:24px;font-weight:700;padding:20px 70px;cursor:pointer;letter-spacing:4px;text-shadow:3px 3px 0 #2a1060}
+#startBtn{background:#5535a8;border:4px solid #9070e0;color:#f0e8ff;font-family:'LanaPixel',monospace;font-size:24px;font-weight:700;padding:20px 70px;cursor:pointer;letter-spacing:4px;text-shadow:3px 3px 0 #2a1060}
 #startBtn:active{transform:translate(3px,3px)}
 #ctrls{position:absolute;bottom:20px;left:0;width:100%;display:flex;justify-content:space-between;padding:0 30px;z-index:10}
-.cbtn{width:130px;height:130px;background:rgba(30,15,70,0.72);border:4px solid #7060c0;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;font-size:44px;color:#d0c0ff;font-weight:900;font-family:'LanaPixel','Courier New',monospace;touch-action:none}
+.cbtn{width:130px;height:130px;background:rgba(30,15,70,0.72);border:4px solid #7060c0;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;font-size:44px;color:#d0c0ff;font-weight:900;font-family:'LanaPixel',monospace;touch-action:none}
 .cbtn:active{transform:translate(3px,3px);background:rgba(80,50,160,0.72)}
 </style>
 </head>
@@ -514,7 +519,7 @@ function drawOneGhost(cx,cy){
   const ox=Math.round(cx/P)-halfW;
   const oy=Math.round((cy+bob*P)/P)-halfH;
   spr(bmp,ox,oy,alpha);
-  if(sungOn&&!trioZombie) spr(SUNG,ox,oy+3);
+  if(sungOn) spr(SUNG,ox,oy+3);
   if(poisonTimer>0){
     ctx.globalAlpha=0.22;ctx.fillStyle='#ff8800';
     ctx.fillRect(ox*P,oy*P,bmp[0].length*P,bmp.length*P);ctx.globalAlpha=1;
@@ -820,13 +825,16 @@ function gameLoop(){
           sungTimer=18;spawnParticles(it.x,it.y,'#f06020',14);
         } else if(t==='lsd'){
           lsdActive=true;
+          sungTimer=18;
           setFlash('LSD...','#cc88ff');spawnParticles(it.x,it.y,'#cc88ff',12);
         } else if(t==='e'){
           lsdActive=false;
+          sungTimer=18;
           setFlash('E  OK!','#4488ff');spawnParticles(it.x,it.y,'#4488ff',12);
           acid303(440,0.2,800,8,3);
         } else if(t==='weed'){
           weedTimer=300;
+          sungTimer=18;
           setFlash('WEED...SLOW','#40b830');spawnParticles(it.x,it.y,'#40b830',12);
         } else if(t==='alcohol'){
           poisonTimer=300;
@@ -924,7 +932,11 @@ document.getElementById('frame').addEventListener('pointerdown',()=>{
 },{once:true});
 
 initBg();
-requestAnimationFrame(gameLoop);
+if(document.fonts&&document.fonts.ready){
+  document.fonts.ready.then(()=>requestAnimationFrame(gameLoop));
+}else{
+  requestAnimationFrame(gameLoop);
+}
 </script>
 </body>
 </html>
